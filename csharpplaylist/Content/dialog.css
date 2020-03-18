@@ -1,0 +1,58 @@
+﻿#overlay {
+    display: none;
+    position: absolute;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+
+#dialog {
+    position: absolute;
+    height: 250px;
+    width: 500px;
+    position: absolute;
+    z-index: 11;
+    left: Calc(50vw - 250px);
+    top: -250px;
+    display: flex;
+    flex-direction: column;
+    transition: top 1s;
+}
+
+#dialogheader {
+    height: 30px;
+    line-height: 30px;
+    background-color: #757575;
+    color: white;
+    border-radius: 10px 10px 0px 0px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.dialogclose:hover {
+    cursor: pointer;
+}
+
+#dialogcontent {
+    flex: 1;
+    background-color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+    padding-top: 10px;
+}
+
+#dialogfooter {
+    height: 30px;
+    line-height: 30px;
+    text-align: right;
+    background-color: #757575;
+    color: white;
+    border-radius: 0px 0px 10px 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
