@@ -20,7 +20,7 @@
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
-                    </button>
+                    </button>   
                 </div>
                 <div class="modal-body">
                     ...
@@ -32,17 +32,7 @@
             </div>
         </div>
     </div>
-    <div id="dialog">
-        <div id="dialogheader">
-            <div id="dialogtitle">titel</div>
-            <div class="dialogclose" onclick="fCloseDialog()"><i class="fas fa-times-circle"></i></div>
-        </div>
-        <div id="dialogcontent"></div>
-        <div id="dialogfooter">footer</div>
-    </div>
-    <div id="overlay"></div>
-    <div id="dialog_delete" style="display: none;">Test</div>
-    <div class="">
+    <div>
         <header class="toast-header">
             <h1 class="card-title">Playlist</h1>
         </header>
@@ -50,6 +40,12 @@
 
         </nav>
         <content>
+            <div>
+                Voeg een muziekje toe
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </div>
             <table class="table">
                 <thead class="table-dark">
                     <tr>
