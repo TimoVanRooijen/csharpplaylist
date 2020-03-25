@@ -1,0 +1,27 @@
+<?xml version="1.0" standalone="yes"?>
+<playlist>
+  <song>
+    <id>2</id>
+    <title>Saturday night</title>
+    <artist>Herman Brood</artist>
+    <file />
+  </song>
+  <song>
+    <id>132</id>
+    <title>Happy new year</title>
+    <artist>adsfgh</artist>
+    <file>./music_files/</file>
+  </song>
+  <song>
+    <id>124354</id>
+    <title>Happy new year</title>
+    <artist>adsfgh</artist>
+    <file>./music_files/</file>
+  </song>
+  <song>
+    <id>133</id>
+    <title>Jingle Bells</title>
+    <artist>hello</artist>
+    <file>./music_files/jingle_bells.wav</file>
+  </song>
+</playlist>
