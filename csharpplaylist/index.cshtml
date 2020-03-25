@@ -10,7 +10,8 @@
 
     if (IsPost)
     {
-        songMethods.DeleteSong(Request.QueryString["id"]);
+        string id = 
+        songMethods.DeleteSong("h");
     }
 
 }
@@ -43,7 +44,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <p>Modal body text goes here.</p>
+                        <p id="dialogContent"></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary">Save changes</button>
@@ -75,7 +76,7 @@
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>
                             <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                            <td><a class="btnDelete btn btn-danger" href="?id=@dr["id"]"><i class='fa fa-trash'></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td><a class="btnDelete btn btn-danger" onclick="setId(@dr["id"])"><i class='fa fa-trash'></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
                         </tr>
                     }
                 </tbody>
@@ -88,6 +89,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
+        var ID;
+        function setId(id) {
+            ID = id
+            document.getElementById("dialogContent").innerHTML = ID;
+            console.log(ID);
+        }
+
         $(".btnDelete").click(function () {
             $("#dialog").fadeIn();
         });
