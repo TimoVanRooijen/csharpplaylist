@@ -26,7 +26,6 @@
     <script>
         var globalid = null;
         function getGlobalId(idFromTable) {
-            console.log(idFromTable)
             globalid = idFromTable;
             document.getElementById("verwijdermij").value = globalid;
             document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
@@ -44,7 +43,7 @@
                     <p id="vraagid"></p>
                 </div>
                 <div class="modal-footer">
-                    <form method="get" action="">
+                    <form method="post" action="">
                         <button type="button" id="dialogClose" class="btn btn-secondary">Close</button>
                         <input type="hidden" id="verwijdermij" name="verwijdermij" />
                         <input type="submit" class="btn btn-danger" value="Delete Song" />
@@ -63,9 +62,9 @@
         <div>
             <div>
                 Voeg een muziekje toe
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                <a class="btn btn-primary" href="~/Pages/add.cshtml">
                     <i class="fas fa-plus"></i>
-                </button>
+                </a>
             </div>
             <table class="table">
                 <thead class="table-dark">
