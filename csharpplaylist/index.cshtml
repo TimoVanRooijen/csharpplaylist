@@ -20,9 +20,10 @@
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />\
+    <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
     <script>
         let globalid = -1;
+        let count = 0
     </script>
 </head>
 <body>
@@ -61,7 +62,7 @@
                     <i class="fas fa-plus"></i>
                 </button>
             </div>
-            <table class="table">
+            <table class="table" id="songTable">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col">Nummer</th>
@@ -73,12 +74,20 @@
                 <tbody>
                     @foreach (DataRow dr in ds.Tables["song"].Rows)
                     {
-                        <tr>
+                        <script>
+                            count++
+                            function zetid() {
+                                console.log(document.getElementById("songTable").rows[count])
+                            }
+                        </script>
+                        <tr class="song">
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>
                             <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                            <td><a class="btnDelete btn btn-danger" onclick="globalid=@dr["id"]"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td><a class="btnDelete btn btn-danger" onclick="zetid()"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td class="id" style="display: none">@dr["id"]</td>
                         </tr>
+                        
                     }
                 </tbody>
             </table>
