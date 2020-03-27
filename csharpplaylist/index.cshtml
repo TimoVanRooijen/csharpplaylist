@@ -12,21 +12,18 @@
     {
         songMethods.DeleteSong(Request.Form["verwijdermij"]);
     }
-
 }
-
-
 <!DOCTYPE html>
-<script>
-    var globalid =-1;
-</script>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-    <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />\
+    <script>
+        let globalid = -1;
+    </script>
 </head>
 <body>
     <div id="dialog" class="modal" style="display: none">
@@ -41,14 +38,10 @@
                     <p id="vraagid"></p>
                 </div>
                 <div class="modal-footer">
-                    <form method="get" action="#">
+                    <form method="get" action="">
                         <button type="button" id="dialogClose" class="btn btn-secondary">Close</button>
-                        <script>
-                            document.getElementById("verwijdermij").value= globalid;
-                            document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
-                        </script>
                         <input type="hidden" id="verwijdermij" name="verwijdermij" />
-                        <input type="submit" class="btn btn-danger" value="Delete Song"/>
+                        <input type="submit" class="btn btn-danger" value="Delete Song" />
                     </form>
                 </div>
             </div>
@@ -60,7 +53,7 @@
     <nav>
 
     </nav>
-    <content>
+    <main>
         <div>
             <div>
                 Voeg een muziekje toe
@@ -89,11 +82,13 @@
                     }
                 </tbody>
             </table>
-    </content>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+        </div>
+    </main>
+    <script>
+        document.getElementById("verwijdermij").value = globalid;
+        document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
+    </script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
