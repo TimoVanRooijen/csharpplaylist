@@ -12,14 +12,8 @@
     {
         songMethods.DeleteSong(Request.Form["verwijdermij"]);
     }
-
 }
-
-
 <!DOCTYPE html>
-<script>
-    var globalid = -1;
-</script>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,6 +23,15 @@
     <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
 </head>
 <body>
+    <script>
+        var globalid = null;
+        function getGlobalId(idFromTable) {
+            console.log(idFromTable)
+            globalid = idFromTable;
+            document.getElementById("verwijdermij").value = globalid;
+            document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
+        }
+    </script>
     <div id="dialog" class="modal" style="display: none">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -56,7 +59,7 @@
     <nav>
 
     </nav>
-    <content>
+    <main>
         <div>
             <div>
                 Voeg een muziekje toe
@@ -80,20 +83,14 @@
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>
                             <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                            <td><a class="btnDelete btn btn-danger" onclick="globalid=@dr["id"]"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td><a class="btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
-    </content>
-    <script>
-        document.getElementById("verwijdermij").value = globalid;
-        document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
-    </script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-            crossorigin="anonymous"></script>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
