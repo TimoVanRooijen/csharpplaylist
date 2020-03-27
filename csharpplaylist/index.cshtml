@@ -10,15 +10,16 @@
 
     if (IsPost)
     {
-        string id = 
-        songMethods.DeleteSong("h");
+        songMethods.DeleteSong(Request.Form["verwijdermij"]);
     }
 
 }
 
 
 <!DOCTYPE html>
-
+<script>
+    var globalid = -1;
+</script>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -28,6 +29,27 @@
     <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
 </head>
 <body>
+    <div id="dialog" class="modal" style="display: none">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete Song</h5>
+                    <button type="button" class="close" aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p id="vraagid"></p>
+                </div>
+                <div class="modal-footer">
+                    <form method="get" action="">
+                        <button type="button" id="dialogClose" class="btn btn-secondary">Close</button>
+                        <input type="hidden" id="verwijdermij" name="verwijdermij" />
+                        <input type="submit" class="btn btn-danger" value="Delete Song" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <header class="toast-header">
         <h1 class="card-title">Playlist</h1>
     </header>
@@ -35,24 +57,6 @@
 
     </nav>
     <content>
-        <div id="dialog" class="modal" style="display: none">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Delete Song</h5>
-                        <button type="button" class="close" aria-label="Close">
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="dialogContent"></p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                        <button type="button" id="dialogClose" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div>
             <div>
                 Voeg een muziekje toe
@@ -76,26 +80,23 @@
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>
                             <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                            <td><a class="btnDelete btn btn-danger" onclick="setId(@dr["id"])"><i class='fa fa-trash'></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td><a class="btnDelete btn btn-danger" onclick="globalid=@dr["id"]"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/update.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
                         </tr>
                     }
                 </tbody>
             </table>
+        </div>
     </content>
-    </div>
+    <script>
+        document.getElementById("verwijdermij").value = globalid;
+        document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song " + globalid + " wilt verwijderen?";
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
             integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script>
-        var ID;
-        function setId(id) {
-            ID = id
-            document.getElementById("dialogContent").innerHTML = ID;
-            console.log(ID);
-        }
-
         $(".btnDelete").click(function () {
             $("#dialog").fadeIn();
         });
