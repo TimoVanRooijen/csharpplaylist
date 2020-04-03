@@ -57,8 +57,13 @@ namespace csharpplaylist.App_Code.csharp
             //XmlNode node = xmlDoc.SelectSingleNode(path); // use xpath to find a node
             //node.InnerText = "192.168.1.12"; // update node, replace the inner text
             //xmlDoc.Save("file.xml");
+            //DataRow[] drArray = ds.Tables["song"].Select("id = '" + id + "'");
+            //drArray[0].SetField("", "");
             DataRow[] drArray = ds.Tables["song"].Select("id = '" + id + "'");
-            drArray[0].SetField("", "");
+            if (drArray != null && drArray.Length > 0)
+            {
+                return drArray[0];
+            }
 
         }
 

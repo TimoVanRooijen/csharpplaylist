@@ -1,0 +1,45 @@
+﻿@using System.Data;
+@using csharpplaylist.App_Code.csharp;
+
+@{
+    songMethods songMethods = new songMethods();
+
+    Session["songmethods"] = songMethods;
+
+    DataSet ds = songMethods.GetPlaylist("Playlist.xml");
+
+    songMethods.updateSong(Request.Form["id"]);
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+    <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
+</head>
+<body>
+    <header class="toast-header">
+        <h1 class="card-title">Playlist</h1>
+    </header>
+    <form>
+        <div class="form-group">
+            <label for="frmTitle">Id</label>
+            <input type="text" class="form-control" id="frmId" value="">
+        </div>
+        <div class="form-group">
+            <label for="frmTitle">Title</label>
+            <input type="text" class="form-control" id="frmTitle" value="">
+        </div>
+        <div class="form-group">
+            <label for="frmArtist">Artist</label>
+            <input type="text" class="form-control" id="frmArtist" value="">
+        </div>
+        <div class="form-group">
+            <label for="frmArtist">Bestand</label>
+            <input type="file" class="form-control-file" id="frmBestand" value="">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
