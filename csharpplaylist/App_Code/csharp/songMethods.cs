@@ -49,20 +49,16 @@ namespace csharpplaylist.App_Code.csharp
             return dr;
         }
 
-        public void updateSong(string id)
+        public DataRow UpdateSong(string id)
         {
-            //XmlDocument xmlDoc = new XmlDocument();
-            //xmlDoc.Load("file.xml"); // use LoadXml(string xml) to load xml string
-            //string path = "/Installation/ServerIP";
-            //XmlNode node = xmlDoc.SelectSingleNode(path); // use xpath to find a node
-            //node.InnerText = "192.168.1.12"; // update node, replace the inner text
-            //xmlDoc.Save("file.xml");
-            //DataRow[] drArray = ds.Tables["song"].Select("id = '" + id + "'");
-            //drArray[0].SetField("", "");
             DataRow[] drArray = ds.Tables["song"].Select("id = '" + id + "'");
             if (drArray != null && drArray.Length > 0)
             {
                 return drArray[0];
+            } 
+            else
+            {
+                return null;
             }
 
         }

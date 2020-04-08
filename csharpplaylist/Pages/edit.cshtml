@@ -5,10 +5,37 @@
     songMethods songMethods = new songMethods();
 
     Session["songmethods"] = songMethods;
+    Session["id"] = Request.QueryString["id"];
 
     DataSet ds = songMethods.GetPlaylist("Playlist.xml");
 
-    songMethods.updateSong(Request.Form["id"]);
+    DataRow dr = songMethods.UpdateSong(Session["id"].ToString());
+
+    if(IsPost)
+    {
+        songMethods.DeleteSong(Session["id"].ToString());
+
+        HttpPostedFileBase file = Request.Files["file"];
+        string fname = "";
+
+        if (file != null && file.ContentLength > 0)
+        {
+            fname = Path.GetFileName(file.FileName);
+            file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
+        }
+
+        dr = songMethods.CreateEmptyDataRow();
+
+        dr[0] = Request.Form["id"];
+        dr[1] = Request.Form["title"];
+        dr[2] = Request.Form["artist"];
+        dr[3] = "./music_files/" + fname;
+
+        songMethods.CreateSong(dr);
+        Response.Redirect("~/index.cshtml");
+
+    }
+
 
 }
 <!DOCTYPE html>
@@ -27,19 +54,19 @@
     <form>
         <div class="form-group">
             <label for="frmTitle">Id</label>
-            <input type="text" class="form-control" id="frmId" value="">
+            <input type="text" class="form-control" id="frmId" value="@dr["id"]">
         </div>
         <div class="form-group">
             <label for="frmTitle">Title</label>
-            <input type="text" class="form-control" id="frmTitle" value="">
+            <input type="text" class="form-control" id="frmTitle" value="@dr["title"]">
         </div>
         <div class="form-group">
             <label for="frmArtist">Artist</label>
-            <input type="text" class="form-control" id="frmArtist" value="">
+            <input type="text" class="form-control" id="frmArtist" value="@dr["artist"]">
         </div>
         <div class="form-group">
             <label for="frmArtist">Bestand</label>
             <input type="file" class="form-control-file" id="frmBestand" value="">
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" name="pasaan" class="btn btn-primary">Pas aan</button>
     </form>
