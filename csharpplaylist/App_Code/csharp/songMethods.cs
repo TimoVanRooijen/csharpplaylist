@@ -29,7 +29,7 @@ namespace csharpplaylist.App_Code.csharp
             dtSongs.Columns.Add(dcFile);
             ds.Tables.Add(dtSongs);
 
-            ds.ReadXml(HttpContext.Current.Server.MapPath("App_Data/xmlfiles/" + filename));
+            ds.ReadXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
 
             return ds;
         }
