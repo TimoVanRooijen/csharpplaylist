@@ -78,12 +78,6 @@
                 <tbody>
                     @foreach (DataRow dr in ds.Tables["song"].Rows)
                     {
-                        <script>
-                            count++
-                            function zetid() {
-                                console.log(document.getElementById("songTable").rows[count])
-                            }
-                        </script>
                         <tr class="song">
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>

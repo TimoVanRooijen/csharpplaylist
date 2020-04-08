@@ -2,6 +2,7 @@
 @using csharpplaylist.App_Code.csharp;
 
 @{
+    DataRow dr;
     songMethods songMethods = new songMethods();
 
     Session["songmethods"] = songMethods;
@@ -9,31 +10,40 @@
 
     DataSet ds = songMethods.GetPlaylist("Playlist.xml");
 
-    DataRow dr = songMethods.UpdateSong(Session["id"].ToString());
-
     if(IsPost)
     {
+        dr = songMethods.UpdateSong(Session["id"].ToString());
+        string fnameOld = (string)dr[3];
         songMethods.DeleteSong(Session["id"].ToString());
 
         HttpPostedFileBase file = Request.Files["file"];
-        string fname = "";
 
-        if (file != null && file.ContentLength > 0)
-        {
-            fname = Path.GetFileName(file.FileName);
-            file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
-        }
 
         dr = songMethods.CreateEmptyDataRow();
 
         dr[0] = Request.Form["id"];
         dr[1] = Request.Form["title"];
         dr[2] = Request.Form["artist"];
-        dr[3] = "./music_files/" + fname;
+
+
+        if (file != null && file.ContentLength > 0)
+        {
+            string fname = Path.GetFileName(file.FileName);
+            file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
+            dr[3] = "./music_files/" + fname;
+        } else
+        {
+            dr[3] = fnameOld;
+        }
+
+
 
         songMethods.CreateSong(dr);
         Response.Redirect("~/index.cshtml");
 
+    } else
+    {
+        dr = songMethods.UpdateSong(Session["id"].ToString());
     }
 
 
@@ -51,22 +61,24 @@
     <header class="toast-header">
         <h1 class="card-title">Playlist</h1>
     </header>
-    <form>
+    <form action="" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label for="frmTitle">Id</label>
-            <input type="text" class="form-control" id="frmId" value="@dr["id"]">
+            <input type="text" name="id" class="form-control" id="frmId" value="@dr["id"]">
         </div>
         <div class="form-group">
             <label for="frmTitle">Title</label>
-            <input type="text" class="form-control" id="frmTitle" value="@dr["title"]">
+            <input type="text" name="title" class="form-control" id="frmTitle" value="@dr["title"]">
         </div>
         <div class="form-group">
             <label for="frmArtist">Artist</label>
-            <input type="text" class="form-control" id="frmArtist" value="@dr["artist"]">
+            <input type="text" name="artist" class="form-control" id="frmArtist" value="@dr["artist"]">
         </div>
         <div class="form-group">
             <label for="frmArtist">Bestand</label>
-            <input type="file" class="form-control-file" id="frmBestand" value="">
+            <input type="file" name="file" class="form-control-file" id="frmBestand" value="">
         </div>
         <button type="submit" name="pasaan" class="btn btn-primary">Pas aan</button>
     </form>
+</body>
+</html>

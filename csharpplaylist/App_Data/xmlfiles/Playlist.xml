@@ -1,21 +1,6 @@
 <?xml version="1.0" standalone="yes"?>
 <playlist>
   <song>
-    <id>124354</id>
-    <title>Happy new year</title>
-    <artist>adsfgh</artist>
-    <file>./music_files/</file>
-  </song>
-  <song>
-    <id>133</id>
-    <title>Jingle Bells</title>
-    <artist>hello</artist>
-    <file>./music_files/jingle_bells.wav</file>
-  </song>
-  <song>
-    <file>./music_files/</file>
-  </song>
-  <song>
     <id>3</id>
     <title>Happy new year</title>
     <artist>adsfgh</artist>
@@ -23,14 +8,19 @@
   </song>
   <song>
     <id>45</id>
-    <title>Happy new year</title>
-    <artist>adsfgh</artist>
+    <title>Maert</title>
+    <artist>fsdg</artist>
     <file>./music_files/</file>
   </song>
   <song>
-    <id>45</id>
-    <title>dafsgh</title>
-    <artist>fsdg</artist>
+    <id>133</id>
+    <title>Timo</title>
+    <artist>hello</artist>
+  </song>
+  <song>
+    <id>423</id>
+    <title>can we make it</title>
+    <artist>adsfgh</artist>
     <file>./music_files/jingle_bells.wav</file>
   </song>
 </playlist>
