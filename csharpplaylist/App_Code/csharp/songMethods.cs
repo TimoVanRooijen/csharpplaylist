@@ -1,8 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
+using System.Xml.Linq;
+using System.Xml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace csharpplaylist.App_Code.csharp
 {
@@ -29,8 +34,12 @@ namespace csharpplaylist.App_Code.csharp
             dtSongs.Columns.Add(dcFile);
             ds.Tables.Add(dtSongs);
 
-            ds.ReadXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
-
+            //ds.ReadXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
+            using (StreamReader r = new StreamReader(HttpContext.Current.Server.MapPath("~/App_Data/jsonfiles/" + filename)))
+            {
+                string json = r.ReadToEnd();
+                ds = JsonConvert.DeserializeObject<DataSet>(json);
+            }
             return ds;
         }
         public void DeleteSong(string id)
@@ -39,7 +48,14 @@ namespace csharpplaylist.App_Code.csharp
             if (drArray != null && drArray.Length > 0)
             {
                 drArray[0].Delete();
-                ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
+                string json = JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented);
+                JObject json2 = JObject.Parse(json);
+                using (StreamWriter file = File.CreateText(HttpContext.Current.Server.MapPath("~/App_Data/jsonfiles/playlist.json")))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    serializer.Serialize(file, json2);
+                }
+                //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
             }
         }
 
@@ -66,7 +82,14 @@ namespace csharpplaylist.App_Code.csharp
         public void CreateSong(DataRow dr)
         {
             ds.Tables["song"].Rows.Add(dr);
-            ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_data/xmlfiles/" + filename));
+            string json = JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented);
+            JObject json2 = JObject.Parse(json);
+            using (StreamWriter file = File.CreateText(HttpContext.Current.Server.MapPath("~/App_Data/jsonfiles/playlist.json")))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, json2);
+            }
+            //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_data/xmlfiles/" + filename));
         }
     }
 }

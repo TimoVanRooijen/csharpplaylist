@@ -8,7 +8,7 @@
     Session["songmethods"] = songMethods;
     Session["id"] = Request.QueryString["id"];
 
-    DataSet ds = songMethods.GetPlaylist("Playlist.xml");
+    DataSet ds = songMethods.GetPlaylist("playlist.json");
 
     if(IsPost)
     {
