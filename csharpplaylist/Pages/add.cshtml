@@ -7,6 +7,55 @@
     songMethods songMethods = (songMethods)Session["songmethods"];
     DirectoryInfo d = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/music_files"));
     FileInfo[] files = d.GetFiles("*.*");
+    HtmlString warning = new HtmlString("");
+    if (IsPost)
+    {
+        HttpPostedFileBase file = Request.Files["file"];
+        if (!string.IsNullOrEmpty(Request.Form["title"]))
+        {
+            if (!string.IsNullOrEmpty(Request.Form["artist"]))
+            {
+                if (file != null)
+                {
+                    warning = new HtmlString("");
+                    string fname = "";
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        fname = Path.GetFileName(file.FileName);
+                        file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
+
+
+                        int maxID = songMethods.getValidId();
+                        DataRow dr = songMethods.CreateEmptyDataRow();
+
+
+                        dr[0] = maxID;
+                        dr[1] = Request.Form["title"];
+                        dr[2] = Request.Form["artist"];
+                        dr[3] = "./music_files/" + fname;
+
+                        songMethods.CreateSong(dr);
+                        Response.Redirect("~/index.cshtml");
+                    }
+                    else
+                    {
+                        warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have a file</div>");
+                    }
+                }
+            } else
+            {
+                warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have an artist</div>");
+            }
+        } else
+        {
+            warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have a title</div>");
+        }
+
+
+
+
+    }
 }
 
 <!DOCTYPE html>
@@ -30,33 +79,7 @@
             <label>File: </label><input name="file" type="file" /><br />
             <input type="submit" />
         </form>
+        @warning
     </main>
-    @{
-        if (IsPost)
-        {
-
-
-            HttpPostedFileBase file = Request.Files["file"];
-            string fname = "";
-
-            if (file != null && file.ContentLength > 0)
-            {
-                fname = Path.GetFileName(file.FileName);
-                file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
-            }
-
-            int maxID = songMethods.getValidId();
-            DataRow dr = songMethods.CreateEmptyDataRow();
-
-
-            dr[0] = maxID;
-            dr[1] = Request.Form["title"];
-            dr[2] = Request.Form["artist"];
-            dr[3] = "./music_files/" + fname;
-
-            songMethods.CreateSong(dr);
-            Response.Redirect("~/index.cshtml");
-        }
-    }
 </body>
 </html>
