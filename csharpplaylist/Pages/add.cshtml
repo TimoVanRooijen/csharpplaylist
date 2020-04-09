@@ -25,7 +25,6 @@
     </header>
     <main>
         <form method="post" action="" enctype="multipart/form-data">
-            <label>Id: </label><input name="id" type="text" /><br />
             <label>Title: </label><input name="title" type="text" /><br />
             <label>Artist: </label><input name="artist" type="text" /><br />
             <label>File: </label><input name="file" type="file" /><br />
@@ -46,9 +45,11 @@
                 file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
             }
 
+            int maxID = songMethods.getValidId();
             DataRow dr = songMethods.CreateEmptyDataRow();
 
-            dr[0] = Request.Form["id"];
+
+            dr[0] = maxID;
             dr[1] = Request.Form["title"];
             dr[2] = Request.Form["artist"];
             dr[3] = "./music_files/" + fname;

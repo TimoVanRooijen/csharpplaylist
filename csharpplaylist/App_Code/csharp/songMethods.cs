@@ -91,5 +91,11 @@ namespace csharpplaylist.App_Code.csharp
             }
             //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_data/xmlfiles/" + filename));
         }
+
+        public int getValidId()
+        {
+            int nextId = Convert.ToInt32(ds.Tables["song"].Compute("MAX(ID)", "")) + 1;
+            return nextId;
+        }
     }
 }
