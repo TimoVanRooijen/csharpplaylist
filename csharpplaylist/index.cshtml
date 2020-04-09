@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="~/Content/layout.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
 </head>
 <body>
     <script>
@@ -66,30 +68,35 @@
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
-            <table class="table" id="songTable">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Nummer</th>
-                        <th scope="col">Artist</th>
-                        <th scope="col">Play</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (DataRow dr in ds.Tables["song"].Rows)
-                    {
-                        <tr class="song">
-                            <td>@dr["title"]</td>
-                            <td>@dr["artist"]</td>
-                            <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                            <td><a class="btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                <table class="table table-striped table-bordered" style="width:100%" id="songTable" data-order='[[ 1, "asc" ]]' data-page-length='5'>
+                    <thead class="">
+                        <tr>
+                            <th scope="col">Nummer</th>
+                            <th scope="col">Artist</th>
+                            <th scope="col">Play</th>
+                            <th scope="col">Actions</th>
                         </tr>
-                        
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (DataRow dr in ds.Tables["song"].Rows)
+                        {
+                            <tr class="song">
+                                <td>@dr["title"]</td>
+                                <td>@dr["artist"]</td>
+                                <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
+                                <td><a class="btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            </tr>
+
+                        }
+                    </tbody>
+                </table>
         </div>
     </main>
+    <footer class="page-footer font-small fixed-bottom">
+        <div class="footer-copyright text-center py-3">
+            © 2020 Copyright Timo van Rooijen & Mart Rietdijk
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -100,6 +107,16 @@
         $("#dialogClose").click(function () {
             $("#dialog").fadeOut();
         });
+        $(document).ready(function () {
+            $('#songTable').DataTable({
+                "lengthMenu": [[1, 5, 10, 25, -1], [1, 5, 10, 25, "All"]],
+                "columnDefs": [
+                    { "orderable": false, "targets": [2, 3] }
+                ]
+            });
+        });
     </script>
+    <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
 </body>
 </html>

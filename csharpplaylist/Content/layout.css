@@ -1,8 +1,12 @@
 ﻿.title {
-    color: #8EE4AF;
+    color: rgb(252,68,53);
     font-weight: bold;
+    text-align: center;
 }
-
-.header, .musicadd {
-    background-color: #6b6b6b;
+thead th {
+    color: rgb(252,68,53);
+}
+html {
+    overflow: hidden;
+    margin: 10px;
 }
