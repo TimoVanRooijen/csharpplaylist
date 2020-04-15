@@ -21,8 +21,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="~/Content/layout.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 </head>
 <body>
     <script>
@@ -54,42 +55,45 @@
             </div>
         </div>
     </div>
-    <header class="toast-header header">
-        <h1 class="card-title title">Playlist</h1>
+    <header class="header toast-header">
+        <h1 class="title">Playlist</h1>
     </header>
-    <nav>
-
-    </nav>
+    <hr class="headerhr" />
     <main>
-        <div>
+        <div class="doetwatleuks">
             <div class="musicadd">
                 Voeg een muziekje toe
                 <a class="btn btn-primary" href="~/Pages/add.cshtml">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>
-                <table class="table table-striped table-bordered" style="width:100%" id="songTable" data-order='[[ 1, "asc" ]]' data-page-length='5'>
-                    <thead class="">
-                        <tr>
-                            <th scope="col">Nummer</th>
-                            <th scope="col">Artist</th>
-                            <th scope="col">Play</th>
-                            <th scope="col">Actions</th>
+            <table class="table table-striped" style="width:100%" id="songTable" data-order='[[ 1, "asc" ]]' data-page-length='5'>
+                <thead>
+                    <tr class="tablethead">
+                        <th scope="col">Nummer</th>
+                        <th scope="col">Artist</th>
+                        <th scope="col">Play</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (DataRow dr in ds.Tables["song"].Rows)
+                    {
+                        <tr class="song">
+                            <td>@dr["title"]</td>
+                            <td>@dr["artist"]</td>
+                            <td>
+                                <audio id="music" controls>
+                                    <source src="@dr["file"]" type='audio/mpeg'>
+                                    Your browser does not support the audio element.
+                                </audio>
+                            </td>
+                            <td><a class="btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (DataRow dr in ds.Tables["song"].Rows)
-                        {
-                            <tr class="song">
-                                <td>@dr["title"]</td>
-                                <td>@dr["artist"]</td>
-                                <td><audio controls><source src="@dr["file"]" type='audio/mpeg'>Your browser does not support the audio element.</audio></td>
-                                <td><a class="btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class="btn btn-primary" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
-                            </tr>
 
-                        }
-                    </tbody>
-                </table>
+                    }
+                </tbody>
+            </table>
         </div>
     </main>
     <footer class="page-footer font-small fixed-bottom">

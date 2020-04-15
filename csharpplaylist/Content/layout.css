@@ -1,12 +1,91 @@
-﻿.title {
-    color: rgb(252,68,53);
-    font-weight: bold;
+﻿html {
+    overflow: hidden;
+    margin-top: 0px;
+
+    height: 100vh;
+}
+
+body, .header, main {
+    background-color: transparent !important;
+}
+
+html {
+    background: linear-gradient(to bottom, #22A86B 40%, white 40%);
+}
+
+
+main {
+    padding-top: 50px;
+}
+
+header h1 {
+    margin: auto;
+}
+.musicadd {
     text-align: center;
 }
-thead th {
-    color: rgb(252,68,53);
+
+.title {
+    color: white;
+    font-size: 55px;
+    text-align: center;
+    font-family: 'Monoton', cursive;
 }
-html {
+
+.header {
+    border: none;
+}
+.headerhr {
+    width: 95vw;
+    border-color: white;
+
+}
+
+.musicadd {
+    color: white;
+}
+
+thead th {
+    color: #3BBA9C;
+}
+
+.doetwatleuks {
+    background-color: #1B1D1C;
+    color: white;
+    width: 80%;
+    margin: auto;
+    padding: 10px;
+    border-radius: 10px;
+    height: 700px;
     overflow: hidden;
-    margin: 10px;
+}
+
+table tr td {
+    color: white;
+}
+.table {
+    border: #959794;
+    width: 100%;
+}
+
+.table tbody {
+    width: 100%;
+    overflow: auto;
+    height: 100px;
+}
+
+.table tr {
+}
+
+.table th, .table td {
+    padding: 5px;
+    width: 200px;
+}
+
+.custom-select {
+    color: #959794;
+}
+
+.page-footer {
+    color: black    ;
 }
