@@ -53,6 +53,10 @@
             }
         } else
         {
+            if (!string.IsNullOrEmpty(Request.Form["artist"])) 
+            {
+                Iartist = Request.Form["artist"];
+            }
             warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have a title</div>");
         }
 
