@@ -4,6 +4,7 @@
 @{
     DataRow dr;
     songMethods songMethods = new songMethods();
+    HtmlString warning = new HtmlString("");
 
     Session["songmethods"] = songMethods;
     Session["id"] = Request.QueryString["id"];
@@ -14,32 +15,54 @@
     {
         dr = songMethods.UpdateSong(Session["id"].ToString());
         string fnameOld = (string)dr[3];
-        songMethods.DeleteSong(Session["id"].ToString());
 
         HttpPostedFileBase file = Request.Files["file"];
 
 
-        dr = songMethods.CreateEmptyDataRow();
 
-        dr[0] = Request.Form["id"];
-        dr[1] = Request.Form["title"];
-        dr[2] = Request.Form["artist"];
-
-
-        if (file != null && file.ContentLength > 0)
+        if (!string.IsNullOrEmpty(Request.Form["id"]))
         {
-            string fname = Path.GetFileName(file.FileName);
-            file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
-            dr[3] = "./music_files/" + fname;
+            
+            if (!string.IsNullOrEmpty(Request.Form["title"]))
+            {
+                if (!string.IsNullOrEmpty(Request.Form["artist"]))
+                {
+                    dr = songMethods.CreateEmptyDataRow();
+                    dr[0] = Request.Form["id"];
+                    dr[1] = Request.Form["title"];
+                    dr[2] = Request.Form["artist"];
+
+                    if (file != null && file.ContentLength > 0)
+                    {
+                        string fname = Path.GetFileName(file.FileName);
+                        file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
+                        dr[3] = "./music_files/" + fname;
+                    } else
+                    {
+                        dr[3] = fnameOld;
+                    }
+
+
+                    songMethods.DeleteSong(Session["id"].ToString());
+
+                    songMethods.CreateSong(dr);
+                    Response.Redirect("~/index.cshtml");
+                } else
+                {
+                    warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have an Artist</div>");
+                }
+            } else
+            {
+                warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have a title</div>");
+            }
         } else
         {
-            dr[3] = fnameOld;
+            warning = new HtmlString("<div class='alert alert-danger' role='alert'>Your song must have an ID</div>");
         }
 
 
 
-        songMethods.CreateSong(dr);
-        Response.Redirect("~/index.cshtml");
+        
 
     } else
     {
@@ -79,6 +102,7 @@
             <input type="file" name="file" class="form-control-file" id="frmBestand" value="">
         </div>
         <button type="submit" name="pasaan" class="btn btn-primary">Pas aan</button>
+        <p>@warning</p>
     </form>
 </body>
 </html>

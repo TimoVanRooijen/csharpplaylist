@@ -8,13 +8,17 @@
     DirectoryInfo d = new DirectoryInfo(HttpContext.Current.Server.MapPath("~/music_files"));
     FileInfo[] files = d.GetFiles("*.*");
     HtmlString warning = new HtmlString("");
+    string Ititle = "";
+    string Iartist = "";
     if (IsPost)
     {
         HttpPostedFileBase file = Request.Files["file"];
         if (!string.IsNullOrEmpty(Request.Form["title"]))
         {
+            Ititle = Request.Form["title"];
             if (!string.IsNullOrEmpty(Request.Form["artist"]))
             {
+                Iartist = Request.Form["artist"];
                 if (file != null)
                 {
                     warning = new HtmlString("");
@@ -74,8 +78,8 @@
     </header>
     <main>
         <form method="post" action="" enctype="multipart/form-data">
-            <label>Title: </label><input name="title" type="text" /><br />
-            <label>Artist: </label><input name="artist" type="text" /><br />
+            <label>Title: </label><input value="@Ititle" name="title" type="text" /><br />
+            <label>Artist: </label><input value="@Iartist" name="artist" type="text" /><br />
             <label>File: </label><input name="file" type="file" /><br />
             <input type="submit" />
         </form>
