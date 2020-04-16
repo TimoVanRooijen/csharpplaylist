@@ -93,3 +93,11 @@ table tr td {
     table-layout: fixed;
     width: 100%;
 }
+
+#dialog {
+    background-color: rgba(130, 130, 130, 0.7);
+}
+
+.modal-content {
+    margin-top: 100px;
+}
