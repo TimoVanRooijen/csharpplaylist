@@ -4,7 +4,7 @@
     height: 100vh;
     min-width: 1300px;
 }
-
+    
 body, .header, main {
     background-color: transparent !important;
 }
@@ -22,7 +22,7 @@ header h1 {
     margin: auto;
 }
 .musicadd {
-    text-align: right;
+    text-align: left;
 }
 
 .title {
@@ -40,13 +40,27 @@ header h1 {
     border-color: white;
 
 }
+.musicaddbtn {
+    background-color: #22A86B !important;
+    margin-bottom: 10px;
+    color: white !important;
+}
+.editbtn {
+    color: white !important;
+    background-color: #22A86B !important;
+}
+.deletebtn {
+    color: white !important;
+    background-color: #b50c00 !important;
+    border: 1px solid #b50c00 !important;
+}
 
 .musicadd {
     color: white;
 }
 
 thead th {
-    color: #3BBA9C;
+    color: #22A86B;
 }
 
 .div-table {
@@ -56,7 +70,7 @@ thead th {
     margin: auto;
     padding: 10px;
     border-radius: 10px;
-    height: 710px;
+    height: 720px;
     overflow: hidden;
     min-width: 1280px;
 }
@@ -78,6 +92,4 @@ table tr td {
     display: inline-table;
     table-layout: fixed;
     width: 100%;
-    overflow: scroll;
-    height: 100px;
 }
