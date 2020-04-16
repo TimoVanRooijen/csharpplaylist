@@ -66,19 +66,14 @@ table tr td {
     border: #959794;
     width: 100%;
     display: block;
-    overflow: auto;
+    overflow: hidden;
     height: 200px;
 }
 
 .table tbody {
     width: 100%;
-    overflow: scroll;
+    overflow: scroll !important;
     height: 100px;
-}
-
-.tablethead {
-    position: relative;
-    top: 0px;
 }
 
 .table th, .table td {
