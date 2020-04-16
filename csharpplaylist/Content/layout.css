@@ -1,7 +1,6 @@
 ﻿html {
     overflow: hidden;
     margin-top: 0px;
-
     height: 100vh;
 }
 
@@ -49,8 +48,8 @@ thead th {
     color: #3BBA9C;
 }
 
-.doetwatleuks {
-    background-color: #1B1D1C;
+.div-table {
+    background-color: #4a4a4a ;
     color: white;
     width: 80%;
     margin: auto;
@@ -66,15 +65,20 @@ table tr td {
 .table {
     border: #959794;
     width: 100%;
+    display: block;
+    overflow: auto;
+    height: 200px;
 }
 
 .table tbody {
     width: 100%;
-    overflow: auto;
+    overflow: scroll;
     height: 100px;
 }
 
-.table tr {
+.tablethead {
+    position: relative;
+    top: 0px;
 }
 
 .table th, .table td {
@@ -88,4 +92,100 @@ table tr td {
 
 .page-footer {
     color: black    ;
+}
+
+
+#audio-player {
+    height: 50px;
+    width: 350px;
+    overflow: hidden;
+    color: white;
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+}
+
+#controls {
+    height: 50px;
+    width: 400px;
+}
+
+.slash {
+    font-size: 10px;
+    color: white;
+    position: relative;
+    top: 14px;
+}
+
+.time {
+    font-size: 10px;
+    color: white;
+    position: relative;
+    top: 14px;
+    margin: 5px;
+}
+
+.ui-progressbar {
+    background: #9b9b9b;
+}
+
+.ui-progressbar-value {
+    background: white;
+}
+
+#progressbar, #volume {
+    height: 10px;
+    display: inline-block;
+    border-radius: 0px;
+    border: none;
+    position: relative;
+    top: 16px;
+}
+
+#progressbar {
+    width: 150px;
+}
+
+#play, #mute {
+    font-size: 16px;
+    width: 20px;
+    position: relative;
+    top: 17px;
+}
+
+#play {
+    margin-left: 15px;
+}
+
+#volume {
+    width: 50px;
+}
+
+#more-info-box {
+    display: inline-block;
+    width: 150px;
+    height: 50px;
+    position: relative;
+    left: 350px;
+    top: -50px;
+    padding-top: 18px;
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 12px;
+    color: white;
+}
+
+    #more-info-box, #more-info-box > span {
+        cursor: context-menu;
+    }
+
+#info-tray {
+    display: inline-block;
+    color: white;
+    position: relative;
+    width: 100%;
+    top: -65px;
+    height: 50px;
+    padding: 5px;
 }
