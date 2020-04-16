@@ -28,10 +28,10 @@
 <body>
     <script>
         var globalid = null;
-        function getGlobalId(idFromTable) {
+        function getGlobalId(idFromTable, title) {
             globalid = idFromTable;
             document.getElementById("verwijdermij").value = globalid;
-            document.getElementById("vraagid").innerHTML = "Weet je zeker dat je de song met het id " + globalid + " wilt verwijderen?";
+            document.getElementById("vraagid").innerHTML = "Are you sure you want to delete " + title + "?";
         }
     </script>
     <div id="dialog" class="modal" style="display: none">
@@ -87,7 +87,7 @@
                             </td>
                             <td>@dr["title"]</td>
                             <td>@dr["artist"]</td>
-                            <td><a class="deletebtn btnDelete btn btn-danger" onclick="getGlobalId(@dr["id"])"><i class='fa fa-trash' style="color: white"></i></a> <a class=" editbtn btn btn-succes" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
+                            <td><a class="deletebtn btnDelete btn btn-danger" onclick="getGlobalId(idFromTable='@dr["id"]', title='@dr["title"]')"><i class='fa fa-trash' style="color: white"></i></a> <a class=" editbtn btn btn-succes" href="~/Pages/edit.cshtml?id=@dr["id"]"><i class="fas fa-edit"></i></a></td>
                         </tr>
 
                     }
