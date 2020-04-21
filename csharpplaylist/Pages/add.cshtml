@@ -71,7 +71,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Playlist | Add</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
@@ -88,7 +88,7 @@
     <hr class="headerhr" />
     <main>
         <div class="maindiv">
-            <form method="post" action="" enctype="multipart/form-data">
+            <form method="post" action="" enctype="multipart/form-data" class="add">
                 <table>
                     <tr>
                         <td><label>Title: </label></td>
@@ -102,7 +102,7 @@
                         <td><label>File: </label></td>
                         <td><input name="file" type="file" /></td>
                     </tr>
-                    <tr> <td colspan="2"><input class="submitbtn btn btn-succes" type="submit" /></td></tr>
+                    <tr> <td colspan="2"><input class="submitbtn btn btn-succes" type="submit" value="Add" /></td></tr>
                 </table>
             </form>
             <span class="waringmsg">@warning</span>

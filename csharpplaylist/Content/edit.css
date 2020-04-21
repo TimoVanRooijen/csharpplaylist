@@ -23,7 +23,12 @@ form {
     margin: auto;
     text-align: center;
     width: fit-content;
-    margin-top: 100px;
+}
+.maindiv .edit {
+    margin-top: 50px
+}
+.maindiv .add {
+    margin-top: 100px
 }
 
 form input{

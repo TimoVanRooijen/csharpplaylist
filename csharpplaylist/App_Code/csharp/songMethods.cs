@@ -48,12 +48,10 @@ namespace csharpplaylist.App_Code.csharp
             if (drArray != null && drArray.Length > 0)
             {
                 drArray[0].Delete();
-                string json = JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented);
-                JObject json2 = JObject.Parse(json);
                 using (StreamWriter file = File.CreateText(HttpContext.Current.Server.MapPath("~/App_Data/jsonfiles/playlist.json")))
                 {
                     JsonSerializer serializer = new JsonSerializer();
-                    serializer.Serialize(file, json2);
+                    serializer.Serialize(file, ds);
                 }
                 //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
             }
@@ -82,12 +80,10 @@ namespace csharpplaylist.App_Code.csharp
         public void CreateSong(DataRow dr)
         {
             ds.Tables["song"].Rows.Add(dr);
-            string json = JsonConvert.SerializeObject(ds, Newtonsoft.Json.Formatting.Indented);
-            JObject json2 = JObject.Parse(json);
             using (StreamWriter file = File.CreateText(HttpContext.Current.Server.MapPath("~/App_Data/jsonfiles/playlist.json")))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, json2);
+                serializer.Serialize(file, ds);
             }
             //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_data/xmlfiles/" + filename));
         }

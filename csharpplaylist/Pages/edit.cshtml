@@ -75,34 +75,52 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title></title>
+    <title>Playlist | Edit</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
     <link rel="stylesheet" href="~/Content/dialog.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/edit.css" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="toast-header">
-        <h1 class="card-title">Playlist</h1>
+    <header class="header toast-header">
+        <h1 class="title">Playlist</h1>
     </header>
-    <form action="" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="frmTitle">Id</label>
-            <input type="text" name="id" class="form-control" id="frmId" value="@dr["id"]">
+    <h2 class="title2">Edit a song</h2>
+    <hr class="headerhr" />
+    <main>
+        <div class="maindiv">
+
+            <form method="post" action="" enctype="multipart/form-data" class="add">
+                <table>
+                    <tr>
+                        <td><label>Id</label></td>
+                        <td><input type="number" name="id" id="frmId" value="@dr["id"]"></td>
+                    </tr>
+                    <tr>
+                        <td><label>Title: </label></td>
+                        <td><input value="@dr["title"]" name="title" id="frmTitle" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>Artist: </label></td>
+                        <td><input value="@dr["artist"]" name="artist" id="frmArtist" type="text" /></td>
+                    </tr>
+                    <tr>
+                        <td><label>File: </label></td>
+                        <td><input type="file" name="file" class="form-control-file" id="frmBestand" value=""></td>
+                    </tr>
+                    <tr> <td colspan="2"><input class="submitbtn btn btn-succes" type="submit" value="Change" /></td></tr>
+                </table>
+            </form>
+            <span class="waringmsg">@warning</span>
+            <div class="btnpos">
+                <a class="deletebtn btnDelete btn btn-succes" href="../index.cshtml"><i class='fa fa-home' style="color: white"></i> Go back to the home page</a>
+            </div>
+
         </div>
-        <div class="form-group">
-            <label for="frmTitle">Title</label>
-            <input type="text" name="title" class="form-control" id="frmTitle" value="@dr["title"]">
-        </div>
-        <div class="form-group">
-            <label for="frmArtist">Artist</label>
-            <input type="text" name="artist" class="form-control" id="frmArtist" value="@dr["artist"]">
-        </div>
-        <div class="form-group">
-            <label for="frmArtist">Bestand</label>
-            <input type="file" name="file" class="form-control-file" id="frmBestand" value="">
-        </div>
-        <button type="submit" name="pasaan" class="btn btn-primary">Pas aan</button>
-        <p>@warning</p>
-    </form>
+
+    </main>
 </body>
 </html>
