@@ -94,7 +94,7 @@ namespace csharpplaylist.App_Code.csharp
 
         public int getValidId()
         {
-            int nextId = Convert.ToInt32(ds.Tables["song"].Compute("MAX(ID)", "")) + 1;
+            int nextId = Int32.Parse(ds.Tables["song"].Compute("MAX(id)", "").ToString()) + 1;
             return nextId;
         }
     }

@@ -250,6 +250,7 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\edit.css" />
     <Content Include="Content\layout.css" />
     <Content Include="App_Data\xmlfiles\Playlist.xml" />
     <Content Include="Content\dialog.css" />
