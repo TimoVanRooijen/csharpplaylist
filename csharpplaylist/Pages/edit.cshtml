@@ -37,13 +37,12 @@
                         string fname = Path.GetFileName(file.FileName);
                         file.SaveAs(Server.MapPath(Path.Combine("~/music_files/", fname)));
                         dr[3] = "./music_files/" + fname;
+                        songMethods.DeleteMp3AndSong(Session["id"].ToString());
                     } else
                     {
                         dr[3] = fnameOld;
+                        songMethods.DeleteSong(Session["id"].ToString());
                     }
-
-
-                    songMethods.DeleteSong(Session["id"].ToString());
 
                     songMethods.CreateSong(dr);
                     Response.Redirect("~/index.cshtml");

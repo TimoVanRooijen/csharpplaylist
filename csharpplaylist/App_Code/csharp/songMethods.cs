@@ -56,7 +56,17 @@ namespace csharpplaylist.App_Code.csharp
                 //ds.WriteXml(HttpContext.Current.Server.MapPath("~/App_Data/xmlfiles/" + filename));
             }
         }
-            
+
+        public void DeleteMp3AndSong(string id)
+        {
+            DataRow[] drArray = ds.Tables["song"].Select("id = '" + id + "'");
+            if (drArray != null && drArray.Length > 0)
+            {
+                File.Delete(HttpContext.Current.Server.MapPath("~/" + drArray[0].Field<string>(3)));
+                DeleteSong(id);
+            }
+        }
+
         public DataRow CreateEmptyDataRow()
         {
             DataRow dr = ds.Tables["song"].NewRow();
