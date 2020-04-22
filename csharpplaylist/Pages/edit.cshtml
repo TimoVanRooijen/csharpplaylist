@@ -96,16 +96,16 @@
             <form method="post" action="" enctype="multipart/form-data" class="add">
                 <table>
                     <tr>
-                        <td><label>Id</label></td>
-                        <td><input type="number" name="id" id="frmId" value="@dr["id"]"></td>
+                        <td><label>Id:</label></td>
+                        <td><input type="number" name="id" id="frmId" value="@dr["id"]" class="form-control" readonly></td>
                     </tr>
                     <tr>
                         <td><label>Title: </label></td>
-                        <td><input value="@dr["title"]" name="title" id="frmTitle" type="text" /></td>
+                        <td><input value="@dr["title"]" name="title" id="frmTitle" type="text"  class="form-control"/></td>
                     </tr>
                     <tr>
                         <td><label>Artist: </label></td>
-                        <td><input value="@dr["artist"]" name="artist" id="frmArtist" type="text" /></td>
+                        <td><input value="@dr["artist"]" name="artist" id="frmArtist" type="text"  class="form-control"/></td>
                     </tr>
                     <tr>
                         <td><label>File: </label></td>
